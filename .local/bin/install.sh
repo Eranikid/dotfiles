@@ -1,10 +1,5 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
-fi
-
 function prompt() {    
     prompt_text=$1
     echo -n "$prompt_text [y/n] "
@@ -25,13 +20,13 @@ if ! [ -z "$pkgs_to_install" ]; then
 	echo "Need to install following packages:"
     echo "$pkgs_to_install"
 	prompt "Proceed?"
-	[ $prompt_result == "y" ] && pacman -S $pkgs_to_install || echo "Skipping package install..."	
+	[ $prompt_result == "y" ] && sudo pacman -S $pkgs_to_install || echo "Skipping package install..."	
 fi
 
 if ! [ -z "$pkgs_to_delete" ]; then
 	echo "Need to delete following packages:"
 	echo "$pkgs_to_delete"
 	prompt "Proceed?"
-	[ $prompt_result == "y" ] && pacman -Rscn $pkgs_to_delete || echo "Skipping package removal..."
+	[ $prompt_result == "y" ] && sudo pacman -Rscn $pkgs_to_delete || echo "Skipping package removal..."
 fi
 
