@@ -13,8 +13,8 @@ function prompt() {
     echo
 }
 
-pkgs_to_install=$(comm -13 <(pacman -Qettq) <(cat desired_pkgs))
-pkgs_to_delete=$(comm -23 <(pacman -Qettq) <(cat desired_pkgs))
+pkgs_to_install=$(comm -13 <(pacman -Qettq) <(cat ~/.local/share/desired_pkgs))
+pkgs_to_delete=$(comm -23 <(pacman -Qettq) <(cat ~/.local/share/desired_pkgs))
 
 if ! [ -z "$pkgs_to_install" ]; then
 	echo "Need to install following packages:"
