@@ -37,7 +37,7 @@ if ! [ -z "$pkgs_to_delete" ]; then
 	[ $prompt_result == "y" ] && sudo pacman --noconfirm -Rscn $pkgs_to_delete || echo "Skipping package removal..."
 fi
 
-enabled_svcs=$(get_enabled_systemd_services)
+enabled_svcs=$(get_enabled_systemd_services | sort)
 desired_svcs=$(sort ~/.local/share/desired_svcs)
 
 svcs_to_enable=$(comm -13 <(echo $enabled_svcs | tr ' ' '\n') <(echo $desired_svcs | tr ' ' '\n'))
