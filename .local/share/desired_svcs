@@ -1,5 +1,5 @@
-NetworkManager-dispatcher
-NetworkManager-wait-online
-NetworkManager
+NetworkManager-dispatcher.service
+NetworkManager-wait-online.service
+NetworkManager.service
 getty@.service
 remote-fs.target
