@@ -3,3 +3,4 @@ NetworkManager-wait-online.service
 NetworkManager.service
 getty@.service
 remote-fs.target
+gdm.service

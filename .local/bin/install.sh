@@ -44,4 +44,4 @@ svcs_to_enable=$(comm -13 <(echo $enabled_svcs | tr ' ' '\n') <(echo $desired_sv
 svcs_to_disable=$(comm -23 <(echo $enabled_svcs | tr ' ' '\n') <(echo $desired_svcs | tr ' ' '\n'))
 
 echo $svcs_to_enable
-echo $svcs_to_disable
+echo $svcs_to_disable | tr ' ' '\n'
