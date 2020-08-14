@@ -25,7 +25,7 @@ pkgs_to_delete=$(comm -23 <(echo $installed_pkgs | tr ' ' '\n') <(echo $desired_
 
 if ! [ -z "$pkgs_to_install" ]; then
 	echo "Need to install following packages:"
-    echo "$pkgs_to_install"
+	echo "$pkgs_to_install"
 	prompt "Proceed?"
 	[ $prompt_result == "y" ] && sudo pacman --noconfirm -S $pkgs_to_install || echo "Skipping package install..."	
 fi
@@ -43,5 +43,28 @@ desired_svcs=$(sort ~/.local/share/desired_svcs)
 svcs_to_enable=$(comm -13 <(echo $enabled_svcs | tr ' ' '\n') <(echo $desired_svcs | tr ' ' '\n'))
 svcs_to_disable=$(comm -23 <(echo $enabled_svcs | tr ' ' '\n') <(echo $desired_svcs | tr ' ' '\n'))
 
-echo $svcs_to_enable
-echo $svcs_to_disable | tr ' ' '\n'
+if ! [ -z $svcs_to_enable ]; then
+	echo "Need to enable following systemd units:"
+	echo $svcs_to_enable
+	prompt "Proceed?"
+	if [ $prompt_result == "y" ]; then
+		for svc in $svcs_to_enable; do
+			sudo systemctl enable $svc
+		done
+	else
+		echo "Skipping enabling services..."
+	fi
+fi
+
+if ! [ -z $svcs_to_disable ]; then
+	echo "Need to disable following systemd units:"
+	echo $svcs_to_disable
+	prompt "Proceed?"
+	if [ $prompt_result == "y" ]; then
+		for svc in $svcs_to_disable; do
+			sudo systemctl disable $svc
+		done
+	else
+		echo "Skipping disabling services..."
+	fi
+fi
