@@ -12,6 +12,7 @@ make
 man-db
 networkmanager
 pass
-rofi
+rofi-dmenu
 vim
+which
 yay
