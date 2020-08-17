@@ -3,8 +3,9 @@
 1. `$ git clone --bare https://github.com/Eranikid/dotfiles ~/.dotfiles/`
 2. `$ git --git-dir=~/.dotfiles/ --work-tree=~/ checkout -f`
 3. `$ source .bashrc`
-4. To be able to push over ssh later: `git remote set-url origin git@github.com:Eranikid/dotfiles`
-5. `$ install.sh`
+4. To be able to push over ssh later: `$ dotfiles remote set-url origin git@github.com:Eranikid/dotfiles`
+5. `$ dotfiles config status.showUntrackedFiles no`
+6. `$ install.sh`
 
 # Things to do manually:
 
