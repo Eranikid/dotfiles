@@ -4,24 +4,30 @@ function prompt() {
     prompt_text=$1
     echo -n "$prompt_text [y/n] "
     while true; do
-        read -n 1 -r -s yn    
-        case $yn in
-            [Yy]* ) prompt_result='y'; break;;
-            [Nn]* ) prompt_result='n'; break;;        
-        esac
+	read -n 1 -r -s yn    
+	case $yn in
+	    [Yy]* ) prompt_result='y'; break;;
+	    [Nn]* ) prompt_result='n'; break;;	      
+	esac
     done
     echo
+}
+
+function normalize() {
+	filename=$1
+	grep -v ^\# $filename | grep . | sort
 }
 
 function get_enabled_systemd_services {
     systemctl list-unit-files | tr -s [:blank:] | cut -d' ' -f1,2 | grep 'enabled$' | cut -d' ' -f1
 }
 
-installed_pkgs=$(yay -Qettq)
-desired_pkgs=$(sort ~/.local/share/desired_pkgs)
+all_installed_pkgs=$(yay -Qq | sort)
+top_level_installed_pkgs=$(yay -Qettq | sort)
+desired_pkgs=$(normalize ~/.local/share/desired_pkgs)
 
-pkgs_to_install=$(comm -13 <(echo $installed_pkgs | tr ' ' '\n') <(echo $desired_pkgs | tr ' ' '\n'))
-pkgs_to_delete=$(comm -23 <(echo $installed_pkgs | tr ' ' '\n') <(echo $desired_pkgs | tr ' ' '\n'))
+pkgs_to_install=$(comm -13 <(echo $all_installed_pkgs | tr ' ' '\n') <(echo $desired_pkgs | tr ' ' '\n'))
+pkgs_to_delete=$(comm -23 <(echo $top_level_installed_pkgs | tr ' ' '\n') <(echo $desired_pkgs | tr ' ' '\n'))
 
 if ! [ -z "$pkgs_to_install" ]; then
 	echo "Need to install following packages:"

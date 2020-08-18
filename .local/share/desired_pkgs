@@ -1,19 +1,36 @@
+# Base system
 base
-fakeroot
-firefox
-gcc
-gdm
-gnome-control-center
-gnome-tweaks
-kitty
 linux
 linux-firmware
-make
+
+# Essentials
 man-db
+git
 networkmanager
-paperkey
-pass
-rofi-dmenu
 vim
 which
 yay
+
+# Building AUR packages
+fakeroot
+binutils
+
+# Graphical environment
+gdm
+gnome-control-center
+gnome-tweaks
+
+# Browser
+firefox
+
+# Security
+gnupg
+paperkey
+pass
+
+# Terminal
+kitty
+
+# Menu
+rofi
+rofi-dmenu
