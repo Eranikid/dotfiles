@@ -11,6 +11,7 @@ linux-firmware
 make
 man-db
 networkmanager
+paperkey
 pass
 rofi-dmenu
 vim
