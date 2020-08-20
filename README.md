@@ -9,7 +9,11 @@
 
 # Things to do manually:
 
-1. Import GPG key
+1. [Import GPG key](#importing-gpg-key)
 2. Set wallpaper
 3. Set firefox default search engine
 4. Install `yay` [TODO automate]
+
+# Importing GPG key
+
+WIP
