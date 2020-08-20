@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function prompt() {    
+prompt() {    
     prompt_text=$1
     echo -n "$prompt_text [y/n] "
     while true; do
@@ -13,14 +13,30 @@ function prompt() {
     echo
 }
 
-function normalize() {
+normalize() {
 	filename=$1
 	grep -v ^\# $filename | grep . | sort
 }
 
-function get_enabled_systemd_services {
+get_enabled_systemd_services() {
     systemctl list-unit-files | tr -s [:blank:] | cut -d' ' -f1,2 | grep 'enabled$' | cut -d' ' -f1
 }
+
+install_yay() {
+	tmp=$(mktemp -d)
+	prev_pwd=$(pwd)
+	cd $tmp
+	git clone https://aur.archlinux.org/yay.git
+	cd yay
+	makepkg -sirc --noconfirm
+	cd $prev_pwd
+}
+
+if ! command -v yay &> /dev/null; then
+	echo "Yay is not installed. Do you wish to install it?"
+	prompt "Proceed?"
+	[ $prompt_result == "y" ] && install_yay || echo "Skipping installing yay"
+fi
 
 all_installed_pkgs=$(yay -Qq | sort)
 top_level_installed_pkgs=$(yay -Qettq | sort)
@@ -29,14 +45,15 @@ desired_pkgs=$(normalize ~/.local/share/desired_pkgs)
 pkgs_to_install=$(comm -13 <(echo $all_installed_pkgs | tr ' ' '\n') <(echo $desired_pkgs | tr ' ' '\n'))
 pkgs_to_delete=$(comm -23 <(echo $top_level_installed_pkgs | tr ' ' '\n') <(echo $desired_pkgs | tr ' ' '\n'))
 
-if ! [ -z "$pkgs_to_install" ]; then
+
+if [ "$pkgs_to_install" ]; then
 	echo "Need to install following packages:"
 	echo "$pkgs_to_install"
 	prompt "Proceed?"
 	[ $prompt_result == "y" ] && yay --noconfirm -S $pkgs_to_install || echo "Skipping package install..."	
 fi
 
-if ! [ -z "$pkgs_to_delete" ]; then
+if [ "$pkgs_to_delete" ]; then
 	echo "Need to delete following packages:"
 	echo "$pkgs_to_delete"
 	prompt "Proceed?"
@@ -49,7 +66,7 @@ desired_svcs=$(sort ~/.local/share/desired_svcs)
 svcs_to_enable=$(comm -13 <(echo $enabled_svcs | tr ' ' '\n') <(echo $desired_svcs | tr ' ' '\n'))
 svcs_to_disable=$(comm -23 <(echo $enabled_svcs | tr ' ' '\n') <(echo $desired_svcs | tr ' ' '\n'))
 
-if ! [ -z $svcs_to_enable ]; then
+if [ $svcs_to_enable ]; then
 	echo "Need to enable following systemd units:"
 	echo $svcs_to_enable
 	prompt "Proceed?"
@@ -62,7 +79,7 @@ if ! [ -z $svcs_to_enable ]; then
 	fi
 fi
 
-if ! [ -z $svcs_to_disable ]; then
+if [ $svcs_to_disable ]; then
 	echo "Need to disable following systemd units:"
 	echo $svcs_to_disable
 	prompt "Proceed?"
