@@ -16,4 +16,10 @@
 
 # Importing GPG key
 
-WIP
+## If available as file:
+`$ gpg --import private-key.asc`
+
+## If available as QR code photo:
+1. Import public key from keyserver: `$ gpg -recv-keys 9758268F5917D051187BBE6FA84EC160A129237E`
+2. Export public key as file: `$ gpg --output public-key.asc --export user-id 9758268F5917D051187BBE6FA84EC160A129237E`
+3. Combine private and public key: `$ zbarimg -1 --raw -Sbinary secret-key.png | paperkey --pubring public-key.asc | gpg --import`
