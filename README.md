@@ -13,6 +13,7 @@
 2. Set wallpaper
 3. Set firefox default search engine
 4. Install `yay` [TODO automate]
+5. Add keyboard layouts in GNOME control center
 
 # Importing GPG key
 
