@@ -74,3 +74,5 @@ if ! [ -z $svcs_to_disable ]; then
 		echo "Skipping disabling services..."
 	fi
 fi
+
+cat .local/share/desired_dconf | dconf load /

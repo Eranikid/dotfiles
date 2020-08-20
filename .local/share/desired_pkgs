@@ -27,6 +27,8 @@ firefox
 gnupg
 paperkey
 pass
+qrencode
+zbar
 
 # Terminal
 kitty
