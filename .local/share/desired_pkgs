@@ -11,6 +11,12 @@ vim
 which
 yay
 
+# Shell
+zsh
+zsh-completions
+zsh-syntax-highlighting
+zsh-autosuggestions
+
 # Building AUR packages
 fakeroot
 binutils
