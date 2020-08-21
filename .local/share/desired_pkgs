@@ -16,6 +16,10 @@ zsh
 zsh-completions
 zsh-syntax-highlighting
 zsh-autosuggestions
+zsh-theme-powerlevel10k-git
+
+# Fonts
+nerd-fonts-jetbrains-mono
 
 # Building AUR packages
 fakeroot
