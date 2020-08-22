@@ -1,6 +1,13 @@
-autoload -Uz compinit promptinit
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
 compinit
-promptinit
+_comp_options+=(globdots)
+
+setopt COMPLETE_ALIASES
+
+bindkey -M menuselect '^[[Z' reverse-menu-complete
+bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
 
 alias ls='ls --color=auto'
 
@@ -8,8 +15,7 @@ alias dotfiles='/usr/bin/git --git-dir=/home/dmitry/.dotfiles/ --work-tree=/home
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source $ZDOTDIR/.p10k.zsh
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
