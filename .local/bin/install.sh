@@ -92,7 +92,7 @@ if [ $svcs_to_disable ]; then
 	fi
 fi
 
-cat .local/share/desired_dconf | dconf load /
+cat ~/.local/share/desired_dconf | dconf load /
 
 if [ $SHELL != "/bin/zsh" ]; then
 	chsh -s /bin/zsh

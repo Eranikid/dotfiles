@@ -45,4 +45,4 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
-WORDCHARS=${WORDCHARS//[\/.-]}
+WORDCHARS=${WORDCHARS//[\/-]}
