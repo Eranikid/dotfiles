@@ -3,3 +3,8 @@ sources=[('xkb', 'us'), ('xkb', 'ru')]
 
 [org/gnome/desktop/background]
 picture-uri='file:///home/dmitry/.local/share/bg'
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+binding='<Super>d'
+command='passmenu'
+name='passmenu'
