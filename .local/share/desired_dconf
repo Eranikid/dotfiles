@@ -1,2 +1,5 @@
 [org/gnome/desktop/input-sources]
 sources=[('xkb', 'us'), ('xkb', 'ru')]
+
+[org/gnome/desktop/background]
+picture-uri='file:///home/dmitry/.local/share/bg'
