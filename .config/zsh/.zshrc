@@ -20,17 +20,21 @@ key[Delete]="${terminfo[kdch1]}"
 key[Shift-Tab]="${terminfo[kcbt]}"
 key[Up]="${terminfo[kcuu1]}"
 key[Down]="${terminfo[kcud1]}"
+key[Ctrl-Left]="${terminfo[kLFT5]}"
+key[Ctrl-Right]="${terminfo[kRIT5]}"
 
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
-[[ -n "${key[Home]}"      ]] && bindkey -- "${key[Home]}"      beginning-of-line
-[[ -n "${key[End]}"       ]] && bindkey -- "${key[End]}"       end-of-line
-[[ -n "${key[Delete]}"    ]] && bindkey -- "${key[Delete]}"    delete-char
-[[ -n "${key[Shift-Tab]}" ]] && bindkey -- "${key[Shift-Tab]}" reverse-menu-complete
-[[ -n "${key[Up]}"        ]] && bindkey -- "${key[Up]}"        up-line-or-beginning-search
-[[ -n "${key[Down]}"      ]] && bindkey -- "${key[Down]}"      down-line-or-beginning-search
+[[ -n "${key[Home]}"       ]] && bindkey -- "${key[Home]}"       beginning-of-line
+[[ -n "${key[End]}"        ]] && bindkey -- "${key[End]}"        end-of-line
+[[ -n "${key[Delete]}"     ]] && bindkey -- "${key[Delete]}"     delete-char
+[[ -n "${key[Shift-Tab]}"  ]] && bindkey -- "${key[Shift-Tab]}"  reverse-menu-complete
+[[ -n "${key[Up]}"         ]] && bindkey -- "${key[Up]}"         up-line-or-beginning-search
+[[ -n "${key[Down]}"       ]] && bindkey -- "${key[Down]}"       down-line-or-beginning-search
+[[ -n "${key[Ctrl-Left]}"  ]] && bindkey -- "${key[Ctrl-Left]}"  backward-word
+[[ -n "${key[Ctrl-Right]}" ]] && bindkey -- "${key[Ctrl-Right]}" forward-word
 
 if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	autoload -Uz add-zle-hook-widget
