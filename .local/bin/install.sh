@@ -97,3 +97,5 @@ cat ~/.local/share/desired_dconf | dconf load /
 if [ $SHELL != "/bin/zsh" ]; then
 	chsh -s /bin/zsh
 fi
+
+sudo cp -r ~/.local/share/desired_files/* /
