@@ -98,4 +98,5 @@ if [ $SHELL != "/bin/zsh" ]; then
 	chsh -s /bin/zsh
 fi
 
+echo "Going to copy files from ~/.local/share/desired_files to /"
 sudo cp -r ~/.local/share/desired_files/* /
