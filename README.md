@@ -13,6 +13,7 @@
 2. Set wallpaper: `$ setbg [file or directory]`
 3. Set firefox default search engine
 4. Switch to GNOME on Xorg. Wayland is strange - it does not execute ~/.profile
+5. `$ sft enroll`
 
 # Importing GPG key
 

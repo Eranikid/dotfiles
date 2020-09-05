@@ -4,7 +4,23 @@ sources=[('xkb', 'us'), ('xkb', 'ru')]
 [org/gnome/desktop/background]
 picture-uri='file:///home/dmitry/.local/share/bg'
 
+[org/gnome/desktop/interface]
+enable-hot-corners=false
+
 [org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
 binding='<Super>d'
 command='passmenu'
 name='passmenu'
+
+[org/gnome/shell]
+disabled-extensions=@as []
+enabled-extensions=['appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com']
+favorite-apps=['slack.desktop', 'firefox.desktop']
+
+[org/gnome/shell/extensions/dash-to-dock]
+dock-fixed=true
+extend-height=true
+show-show-apps-button=false
+show-mounts=false
+show-trash=false
+custom-theme-shrink=true

@@ -9,6 +9,7 @@ git
 networkmanager
 neovim
 neovim-symlinks
+openssh
 which
 yay
 
@@ -27,11 +28,13 @@ fakeroot
 binutils
 make
 gcc
+patch
 
 # Graphical environment
 gdm
-gnome-control-center
-gnome-tweaks
+gnome-shell-extension-appindicator
+libappindicator-gtk3
+gnome-shell-extension-dash-to-dock
 
 # Browser
 firefox
@@ -53,3 +56,12 @@ rofi-dmenu
 # Games
 steam
 xf86-video-intel
+
+# Communication
+slack-desktop
+
+# Development
+rider
+
+# Dodo pizza
+scaleft-client-tools
